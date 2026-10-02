@@ -4,41 +4,59 @@
 
 [📚 Docs](https://tabby.tabbyml.com/docs/welcome/) • [💬 Slack](https://links.tabbyml.com/join-slack) • [🗺️ Roadmap](https://tabby.tabbyml.com/docs/roadmap/)
 
-[![latest release](https://shields.io/github/v/release/TabbyML/tabby)](https://github.com/TabbyML/tabby/releases/latest) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com) [![Docker pulls](https://img.shields.io/docker/pulls/tabbyml/tabby)](https://hub.docker.com/r/tabbyml/tabby) [![codecov](https://codecov.io/gh/TabbyML/tabby/graph/badge.svg?token=WYVVH8MKK3)](https://codecov.io/gh/TabbyML/tabby)
-
 [English](/README.md) | [简体中文](/README-zh.md) | [日本語](/README-ja.md)
 
 </div>
 
-Contributing from India 🇮🇳 - This fork is being maintained with contributions from developers in India!
+> Tabby is a self-hosted AI coding assistant, offering an open-source and on-premises alternative to GitHub Copilot.
 
-> Tabby is a self-hosted AI coding assistant, offering an open-source and on-premises alternative to GitHub Copilot. It boasts several key features:
-> * Self-contained, with no need for a DBMS or cloud service.
-> * OpenAPI interface, easy to integrate with existing infrastructure (e.g Cloud IDE).
-> * Supports consumer-grade GPUs.
+This repository is a **fork of [TabbyML/tabby](https://github.com/TabbyML/tabby)**, maintained by Girish Lade — kept in sync with upstream for local experimentation and study.
 
-<p align="center">
-  <a target="_blank" href="https://tabby.tabbyml.com"><img alt="Open Live Demo" src="https://img.shields.io/badge/OPEN_LIVE_DEMO-blue?logo=xcode&style=for-the-badge&logoColor=green"></a>
-</p>
+## Features (upstream)
 
-<p align="center">
-  <img alt="Demo" src="https://user-images.githubusercontent.com/388154/230440226-9bc01d05-9f57-478b-b04d-81184eba14ca.gif">
-</p>
+- **Self-contained** — no DBMS or cloud service required.
+- **OpenAPI interface** — easy to integrate with existing infrastructure (e.g. Cloud IDE).
+- **Consumer-grade GPUs** — runs on hardware you already own.
+- **IDE clients** — VS Code, JetBrains and more (see `clients/`).
 
-## 🔥 What's New
+## Tech Stack
 
-* **07/02/2025** [v0.30](https://github.com/TabbyML/tabby/releases/tag/v0.30.0) supports indexing GitLab Merge Request as Context! 
-* **05/25/2025** 💡Interested in joining [Agent](https://links.tabbyml.com/pochi-github-readme) private preview? DM in [X](https://x.com/getpochi) for early waitlist approval!🎫
-* **05/20/2025** Enhance Tabby with your own documentation📃 through REST APIs in [v0.29](https://github.com/TabbyML/tabby/releases/tag/v0.29.0)! 🎉 
-* **05/01/2025** [v0.28](https://github.com/TabbyML/tabby/releases/tag/v0.28.0) transforming Answer Engine messages into persistent, shareable Pages
-* **03/31/2025** [v0.27](https://github.com/TabbyML/tabby/releases/tag/v0.27.0) released with a richer `@` menu in the chat side panel.
-* **02/05/2025** LDAP Authentication and better notification for background jobs coming in Tabby [v0.24.0](https://github.com/TabbyML/tabby/releases/tag/v0.24.0)!✨
-* **02/04/2025** [VSCode 1.20.0](https://marketplace.visualstudio.com/items/TabbyML.vscode-tabby/changelog) upgrade! @-mention files to add them as chat context, and edit inline with a new right-click option are available!
+- **Backend:** Rust (`crates/`, workspace in `Cargo.toml`)
+- **Frontend clients:** TypeScript (`clients/`, pnpm workspace)
+- **CI:** GitHub Actions + codecov (`ci/`, `codecov.yml`)
+- **Packaging:** Docker (`docker/`), Makefile targets
 
-<details>
-  <summary>Archived</summary>
+## Quick Start
 
-* **01/10/2025** Tabby [v0.23.0](https://github.com/TabbyML/tabby/releases/tag/v0.23.0) featuring enhanced code browser experience and chat side panel improvements!
-* **12/24/2024** Introduce **Notification Box** in Tabby [v0.22.0](https://github.com/TabbyML/tabby/releases/tag/v0.22.0)!
+### Server (from source)
 
-</details>
+```bash
+cargo run --bin tabby
+```
+
+### Docker
+
+```bash
+docker run -it -p 8080:8080 -v $HOME/.tabby:/data tabbyml/tabby serve --model StarCoder-1B --device cpu
+```
+
+See the [official docs](https://tabby.tabbyml.com/docs/welcome/) for full installation and model options.
+
+## Project Structure
+
+```
+crates/          # Rust backend (server, models, API)
+clients/         # IDE extensions (VS Code, JetBrains, ...)
+ee/              # enterprise-edition code (upstream)
+experimental/    # experimental features
+docker/          # container images
+ci/              # CI scripts
+```
+
+## License
+
+Apache 2.0 (upstream). See [LICENSE](./LICENSE).
+
+---
+
+Fork maintained by Girish Lade — https://ladestack.in
